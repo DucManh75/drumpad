@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DRUMS PAD</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="./drum.css">
+	<meta name="viewport" content="width=device-width , initial-scale=1.0">
+</head>
+<body>
+    <div class="heading"><h1 class="neon" data-text="Javascript_Drum_Kit">DRUMS PAD</h1></div>
+    
+    <div class="keypad">
+        <!-- <div class="keys"> -->
+            <div data-key="81" class="key1">
+                <p class="character">Q</p>
+                <span class="sound"></span>
+            </div>
+            <div data-key="87" class="key2">
+                <p class="character">W</p>
+                <span class="sound"></span>
+            </div>
+            <div data-key="69" class="key3">
+                <p class="character">E</p>
+                <span class="sound"></span>
+            </div>
+    </div>
+    <div class="keypad1">
+        <div data-key="65" class="key4">
+            <p class="character">A</p>
+            <span class="sound"></span>
+        </div>
+        <div data-key="83" class="key5">
+            <p class="character ">S</p>
+            <span class="sound"></span>
+        </div>
+        <div data-key="68" class="key6">
+            <p class="character">D</p>
+            <span class="sound"></span>
+        </div>
+    </div>
+            
+    <div class="keypad2">
+        <div data-key="90" class="key7">
+            <p class="character">Z</p>
+            <span class="sound"></span>
+        </div>
+        <div data-key="88" class="key8">
+            <p class="character">X</p>
+            <span class="sound"></span>
+        </div>
+        <div data-key="67" class="key9">
+            <p class="character">C</p>
+            <span class="sound"></span>
+        </div>
+    </div>
+        <!-- </div> -->
+
+    <audio data-key="81" src="./audio/sounds_boom.wav"></audio>
+    <audio data-key="87" src="./audio/sounds_clap.wav"></audio>
+    <audio data-key="69" src="./audio/sounds_hihat.wav"></audio>
+    <audio data-key="65" src="./audio/sounds_kick.wav"></audio>
+    <audio data-key="83" src="./audio/sound2/audio_10.mp3"></audio>
+    <audio data-key="68" src="./audio/sounds_ride.wav"></audio>
+    <audio data-key="90" src="./audio/sounds_snare.wav"></audio>
+    <audio data-key="88" src="./audio/sound2/audio_12.mp3"></audio>
+    <audio data-key="67" src="./audio/sound2/audio_1.mp3"></audio>
+    
+
+    <!-- <audio data-key="81" src="./audio/sound2/sounds_45.mp3"></audio>
+    <audio data-key="87" src="./audio/sound2/sounds_46.mp3"></audio>
+    <audio data-key="69" src="./audio/sound2/sounds_47.mp3"></audio>
+    <audio data-key="65" src="./audio/sound2/sounds_48.mp3"></audio>
+    <audio data-key="83" src="./audio/sound2/sounds_49.mp3"></audio>
+    <audio data-key="68" src="./audio/sound2/sounds_50.mp3"></audio>
+    <audio data-key="90" src="./audio/sound2/sounds_51.mp3"></audio>
+    <audio data-key="88" src="./audio/sound2/sounds_52.mp3"></audio>
+    <audio data-key="67" src="./audio/sound2/sounds_53.mp3"></audio> -->
+
+
+<script>
+    /*jshint esversion: 6 */
+console.log("its working");
+window.addEventListener('keydown',function(e){
+    console.log(e.keyCode);
+
+    const audio=document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key=document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    //console.log(audio);
+    //console.log(key);
+
+    //ifthereisnoaudioreturnfromhere
+    if(!audio) return;
+    //ifthereisaudioplayit
+    audio.currentTime=0;//rewind to the start
+    audio.play();
+    key.classList.add('rockit');
+}); 
+
+const keys=document.querySelectorAll('.key1');
+keys.forEach(key => key.addEventListener('transitionend', (e) => {
+   // console.log(e);
+    e.target.classList.remove('rockit');
+})
+);
+</script>
+</body>
+</html>
+    
